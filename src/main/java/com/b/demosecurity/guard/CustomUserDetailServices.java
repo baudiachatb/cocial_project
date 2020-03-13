@@ -16,9 +16,9 @@ import org.springframework.stereotype.Service;
 public class CustomUserDetailServices implements UserDetailsService {
     UserRepo userRepo;
     @Override
-    public UserDetails loadUserByUsername(String idUser) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         try{
-            return new CustomUserDetail(new UserEntity());
+            return new CustomUserDetail(userRepo.findByUsername(userName));
         } catch (Exception e){
             throw new UsernameNotFoundException("User name này không tồn tại");
         }

@@ -19,18 +19,17 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class CustomUserDetail implements UserDetails {
     private UserEntity user;
-    @Autowired
-    UserRoleService userRoleService;
     CustomUserDetail(UserEntity userEntity){
         this.user = userEntity;
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<? extends GrantedAuthority> roles = userRoleService.getListRoleByIdUser(user.getIdUser())
-                .stream()
-                .map(roleEntity -> new SimpleGrantedAuthority(roleEntity.getNameRole()))
-                .collect(Collectors.toList());
-        return roles;
+//        Collection<? extends GrantedAuthority> roles = userRoleService.getListRoleByIdUser(user.getIdUser())
+//                .stream()
+//                .map(roleEntity -> new SimpleGrantedAuthority(roleEntity.getNameRole()))
+//                .collect(Collectors.toList());
+//        return roles;
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"));
     }
 
     @Override
@@ -45,21 +44,21 @@ public class CustomUserDetail implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

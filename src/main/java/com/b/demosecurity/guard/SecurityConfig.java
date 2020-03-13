@@ -7,9 +7,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-//@EnableWebSecurity
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Bean
+    @Bean(name = "passwordEncoder")
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -17,6 +17,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/sigup").permitAll();
+                .antMatchers(HttpMethod.POST, "/sigup").permitAll()
+//                .anyRequest().permitAll();
+                .antMatchers(HttpMethod.GET, "/*/user/**").hasRole("USER")
+        .and().httpBasic();
     }
 }
