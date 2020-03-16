@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -18,6 +19,7 @@ public class RoleEntity implements AbstractEntity {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy="uuid2")
+    @Column(name = "ID", nullable = false, length = 36)
     @EqualsAndHashCode.Include
     private String id;
     @NotNull(message = "trường này không được để trống")
