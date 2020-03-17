@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@AllArgsConstructor
 @NoArgsConstructor
 public class UserState {
     private static Subject<String> updatedUser$ = PublishSubject.create();
