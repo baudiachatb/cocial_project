@@ -11,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -29,17 +30,17 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
-//            String userName = new ObjectMapper().reader(request.getI)
             UserEntity userEntity = new ObjectMapper().readValue(request.getInputStream(), UserEntity.class);
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userEntity.getUsername(), userEntity.getPassword()));
         } catch (Exception e) {
+            e.fillInStackTrace();
             throw new RuntimeException();
         }
     }
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        String token = JWTUltils.TOKEN_PREFIX + jwtUltils.generateToken(((User) authResult.getPrincipal()).getUsername());
+        String token = JWTUltils.TOKEN_PREFIX + jwtUltils.generateToken(((CustomUserDetails) authResult.getPrincipal()).getUsername());
         response.getWriter().write(token);
         response.addHeader(JWTUltils.HEADER_STRING, token);
     }

@@ -1,6 +1,5 @@
 package com.b.myproject.Security;
 
-import com.b.myproject.endpoint.service.authenticate.AuthenticationServiceComposite;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -19,12 +18,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private CustomUserDetailsService customUserDetailsService;
-
-//    @Autowired
-//    SecurityConfig(CustomUserDetailsService customUserDetailsService) {
-//        super();
-//        this.customUserDetailsService = customUserDetailsService;
-//    }
 
     @Bean
     PasswordEncoder getPasswordEncoder() {

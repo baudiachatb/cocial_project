@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 @NoArgsConstructor
-@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AuthenticationServiceComposite {
+    @Autowired
     public RoleService roleService;
+    @Autowired
     public UserService userService;
+    @Autowired
     public UserRoleService userRoleService;
 }

@@ -1,20 +1,12 @@
 package com.b.myproject.Security;
 
 import com.b.myproject.entity.UserEntity;
-import com.b.myproject.entity.UserRoleEntity;
-import com.b.myproject.repository.UserRoleRepo;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
