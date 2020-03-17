@@ -1,4 +1,4 @@
-package com.b.myproject.endpoint.service;
+package com.b.myproject.endpoint.service.authenticate;
 
 import com.b.myproject.entity.UserRoleEntity;
 import java.util.List;

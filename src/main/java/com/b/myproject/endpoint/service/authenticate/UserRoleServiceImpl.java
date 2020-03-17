@@ -1,7 +1,5 @@
-package com.b.myproject.endpoint.service;
+package com.b.myproject.endpoint.service.authenticate;
 
-import com.b.myproject.entity.UserEntity;
-import com.b.myproject.entity.UserEntity_;
 import com.b.myproject.entity.UserRoleEntity;
 import com.b.myproject.entity.UserRoleEntity_;
 import com.b.myproject.repository.UserRoleRepo;
