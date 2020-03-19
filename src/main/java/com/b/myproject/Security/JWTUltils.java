@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class JWTUltils {
     static final String HEADER_STRING = "Authorization";
-    static final String TOKEN_PREFIX = "Bearer ";
+    static final String TOKEN_PREFIX = "bMaster ";
 
     private static final String SECRET = "abcd1234";
     private static final long EXPIRATION_TIME = 864_000_000L;

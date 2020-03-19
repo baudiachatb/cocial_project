@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
 
 @EnableWebSecurity
 @Configuration
@@ -25,11 +26,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors()
+        final CorsConfiguration config = new CorsConfiguration();
+        http
+                .cors()
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/sigup").permitAll()
+                .antMatchers(HttpMethod.POST, "/v1/**").permitAll()
                 .antMatchers("/v1/user/**").authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))

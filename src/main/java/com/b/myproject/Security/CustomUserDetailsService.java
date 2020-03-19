@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-//@NoArgsConstructor
-//@AllArgsConstructor(onConstructor = @__(@Autowired))
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CustomUserDetailsService implements UserDetailsService {
     private final AuthenticationServiceComposite authenticationServiceComposite;
@@ -29,8 +27,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return new CustomUserDetails(getUser(username), getAuthorities(username));
-//        UserDetails user = new User("test1", passwordEncoder.encode("1234"), AuthorityUtils.createAuthorityList("ROLE_USER"));
-//        return user;
     }
 
     private UserEntity getUser(String userName) {

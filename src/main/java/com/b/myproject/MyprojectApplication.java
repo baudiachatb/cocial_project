@@ -36,14 +36,14 @@ public class MyprojectApplication {
 //                    .username("test"+(i+1))
 //                    .firstName("demo")
 //                    .lastName("1")
-//                    .password(password)
+//                    .password(passwordEncoder.encode("1234"))
 //                    .email("abc"+i+"@gmail.com")
 //                    .enable(Byte.parseByte("1"))
 //                    .build();
 //            authenticationServiceComposite.userService.createUser(user);
 //        }
 //        roleRepo.save(RoleEntity.builder()
-//                .nameRole(RoleServiceImpl.GUEST)
+//                .nameRole(RoleServiceImpl.ADMIN)
 //                .enable(Byte.parseByte("1"))
 //                .build());
     }
