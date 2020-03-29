@@ -1,6 +1,6 @@
 package com.b.myproject.endpoint.controller;
 
-import com.b.myproject.endpoint.service.authenticate.AuthenticationServiceComposite;
+import com.b.myproject.endpoint.service.ServiceComposite;
 import com.b.myproject.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.POST)
 public class UserController {
-    AuthenticationServiceComposite composite;
+    ServiceComposite composite;
     @GetMapping("test1")
     @PreAuthorize("hasAnyRole('ADMIN')")
     public String test1(){

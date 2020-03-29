@@ -1,6 +1,10 @@
-package com.b.myproject.endpoint.service.authenticate;
+package com.b.myproject.endpoint.service.userrole;
 
-import com.b.myproject.endpoint.statemanager.UserStateService;
+import com.b.myproject.endpoint.service.role.IRoleService;
+import com.b.myproject.endpoint.service.role.RoleServiceImpl;
+import com.b.myproject.endpoint.service.role.RoleType;
+import com.b.myproject.endpoint.service.user.IUserService;
+import com.b.myproject.endpoint.statemanager.StateComposite;
 import com.b.myproject.entity.RoleEntity;
 import com.b.myproject.entity.UserEntity;
 import com.b.myproject.entity.UserRoleEntity;
@@ -19,16 +23,18 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class UserRoleServiceImpl implements UserRoleService {
+public class UserRoleServiceImpl implements IUserRoleService {
     private final UserRoleRepo userRoleRepo;
-    private final UserStateService userStateService;
-    private final UserService userService;
-    private final RoleService roleService;
+    private final StateComposite stateComposite;
+    private final IUserService userService;
+    private final IRoleService roleService;
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @PostConstruct
     void init() {
-        Disposable disposable1 = userStateService.updateUserAsObs().subscribe(this::setRoleDefault);
+        Disposable disposable1 = stateComposite.userStateService.stateAsObs()
+                .map(stateEnt -> (UserEntity)stateEnt.entity)
+                .subscribe(this::setRoleDefault);
         compositeDisposable.add(disposable1);
     }
 
@@ -84,13 +90,14 @@ public class UserRoleServiceImpl implements UserRoleService {
         return (root, cq, cb) -> cb.equal(root.get(UserRoleEntity_.userByIdUser), userEntity);
     }
 
-    private void setRoleDefault(String idUser) {
-        UserEntity userEntity = userService.findUserByUserId(idUser);
+    private void setRoleDefault(UserEntity userEntity) {
         RoleEntity roleEntity = roleService.getRoleByRoleName(RoleServiceImpl.USER);
         if (userEntity != null && roleEntity != null) {
             userRoleRepo.save(UserRoleEntity.builder()
                     .userByIdUser(userEntity)
+                    .username(userEntity.getUsername())
                     .roleByIdRole(roleEntity)
+                    .nameRole(roleEntity.getNameRole())
                     .build());
         }
     }

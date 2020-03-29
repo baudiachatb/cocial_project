@@ -26,4 +26,10 @@ public class UserRoleEntity implements AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "ID_ROLE", referencedColumnName = "ID", nullable = false)
     private RoleEntity roleByIdRole;
+    @Basic
+    @Column(name = "USERNAME", nullable = false, length = 30)
+    private String username;
+    @Basic
+    @Column(name = "NAME_ROLE", nullable = false, length = 30)
+    private String nameRole;
 }

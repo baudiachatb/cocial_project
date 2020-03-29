@@ -3,10 +3,12 @@ package com.b.myproject.Security;
 import com.b.myproject.entity.UserEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -20,7 +22,9 @@ import java.io.IOException;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private JWTUltils jwtUltils = new JWTUltils();
     private AuthenticationManager authenticationManager;
-    JWTAuthenticationFilter(AuthenticationManager authenticationManager){
+    @Autowired
+    SessionRegistry sessionRegistry;
+            JWTAuthenticationFilter(AuthenticationManager authenticationManager){
         this.authenticationManager = authenticationManager;
     }
     @Override

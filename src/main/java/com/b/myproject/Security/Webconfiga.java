@@ -18,6 +18,5 @@ public class Webconfiga implements WebMvcConfigurer {
                 .allowedHeaders("*")
                 .allowCredentials(true).maxAge(3600);
 
-        // Add more mappings...
     }
 }

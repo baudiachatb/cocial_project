@@ -5,6 +5,12 @@
         <class>com.b.myproject.entity.RoleEntity</class>
         <class>com.b.myproject.entity.UserEntity</class>
         <class>com.b.myproject.entity.UserRoleEntity</class>
+        <class>com.b.myproject.entity.RoleEntity1</class>
+        <class>com.b.myproject.entity.UserEntity1</class>
+        <class>com.b.myproject.entity.UserRoleEntity1</class>
+        <class>com.b.myproject.entity.GroupEntity1</class>
+        <class>com.b.myproject.entity.UserGroupRoleEntity1</class>
+        <class>com.b.myproject.entity.UserDetailGoogleEntity1</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/myproject"/>
             <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

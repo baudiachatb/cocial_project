@@ -1,4 +1,4 @@
-package com.b.myproject.endpoint.service.authenticate;
+package com.b.myproject.endpoint.service.role;
 
 import com.b.myproject.entity.RoleEntity;
 import com.b.myproject.entity.RoleEntity_;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 @NoArgsConstructor
 @AllArgsConstructor(onConstructor = @__(@Autowired))
-public class RoleServiceImpl implements RoleService {
+public class RoleServiceImpl implements IRoleService {
     public static final String USER = "ROLE_USER";
     public static final String ADMIN = "ROLE_ADMIN";
     public static final String MASTER = "ROLE_MASTER";
