@@ -1,19 +1,20 @@
 package com.b.myproject.endpoint.service;
 
+import com.b.myproject.endpoint.service.group.IGroupService;
 import com.b.myproject.endpoint.service.role.IRoleService;
 import com.b.myproject.endpoint.service.user.IUserService;
+import com.b.myproject.endpoint.service.userdetailgoogle.IUserDetailGoogleService;
 import com.b.myproject.endpoint.service.userrole.IUserRoleService;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-@NoArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ServiceComposite {
-    @Autowired
-    public IRoleService roleService;
-    @Autowired
-    public IUserService userService;
-    @Autowired
-    public IUserRoleService userRoleService;
+    public final IRoleService roleService;
+    public final IUserService userService;
+    public final IUserRoleService userRoleService;
+    public final IGroupService groupService;
+    public final IUserDetailGoogleService userDetailGoogleService;
 }
