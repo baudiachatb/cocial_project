@@ -31,8 +31,8 @@ public class UserController {
         return "here is test2";
     }
 
-    @GetMapping("/${username}")
-    public UserEntity getUserByUserName(@PathVariable("username") String userName) {
+    @GetMapping("/get")
+    public UserEntity getUserByUserName(@RequestParam("username") String userName) {
         return composite.userService.findUserByUserName(userName);
     }
 

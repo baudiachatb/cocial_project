@@ -15,7 +15,7 @@ public class Scheduling {
 
     @Scheduled(fixedDelay = 3000)
     public void send(){
-        System.out.println("start!");
+        System.out.println("send....!");
         messagingTemplate.convertAndSend("/topic/hub", new ChatMessage(ChatMessage.MessageType.CHAT, "aa", "bbb"));
     }
 }
