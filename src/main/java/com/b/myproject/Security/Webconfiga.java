@@ -10,11 +10,11 @@ public class Webconfiga implements WebMvcConfigurer {
     String origin;
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/login")
+        registry.addMapping("*")
                 // Cho phép các trang có thể request đến
-                .allowedOrigins(origin, "*")
+                .allowedOrigins("*")
                 // cho phép các phương thức được request
-                .allowedMethods("POST","PUT", "DELETE")
+                .allowedMethods("POST","PUT", "DELETE", "GET")
                 .allowedHeaders("*")
                 .allowCredentials(true).maxAge(3600);
 

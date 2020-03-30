@@ -9,6 +9,7 @@ import com.b.myproject.repository.UserRepo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
@@ -24,6 +25,7 @@ public class MyprojectApplication {
         UserRepo userRepo = context.getBean(UserRepo.class);
         RoleRepo roleRepo = context.getBean(RoleRepo.class);
         IRoleService roleService = context.getBean(RoleServiceImpl.class);
+        SimpMessagingTemplate simpMessagingTemplate = context.getBean(SimpMessagingTemplate.class);
 //        for(int i = 2; i<5; i++){
 //            UserEntity user = UserEntity.builder()
 //                    .username("testdemo"+(i+1))
@@ -39,6 +41,7 @@ public class MyprojectApplication {
 //                .nameRole(RoleServiceImpl.ADMIN)
 //                .enable(Byte.parseByte("1"))
 //                .build());
+
     }
 
 }
