@@ -13,9 +13,9 @@ public class Scheduling {
     @Autowired
     SimpMessagingTemplate messagingTemplate;
 
-    @Scheduled(fixedDelay = 3000)
+    @Scheduled(fixedDelay = 30000)
     public void send(){
         System.out.println("send....!");
-        messagingTemplate.convertAndSend("/topic/hub", new ChatMessage(ChatMessage.MessageType.CHAT, "aa", "bbb"));
+        messagingTemplate.convertAndSendToUser("abc4@gmail.com","/topic/hub", new ChatMessage(ChatMessage.MessageType.CHAT, "aa", "bbb"));
     }
 }

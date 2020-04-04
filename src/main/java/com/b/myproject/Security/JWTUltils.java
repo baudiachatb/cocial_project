@@ -14,10 +14,11 @@ import java.util.Date;
 @Service
 @NoArgsConstructor
 public class JWTUltils {
-    static final String HEADER_STRING = "Authorization";
-    static final String TOKEN_PREFIX = "bMaster ";
+    public static final String HEADER_STRING = "Authorization";
+    public static final String TOKEN_PREFIX = "bMaster ";
     private static final String SECRET = "abcd1234";
-    private static final long EXPIRATION_TIME = 864_000_000L;
+    private static final long EXPIRATION_TIME = 864_000_00L;
+//    private static final long EXPIRATION_TIME = 864L;
 
     String generateToken(String subject) {
         ZonedDateTime expirationTime = ZonedDateTime.now(ZoneOffset.UTC).plus(EXPIRATION_TIME, ChronoUnit.MILLIS);
@@ -27,7 +28,7 @@ public class JWTUltils {
                 .compact();
     }
 
-    String getUserNameFromToken(String token) {
+    public String getUserNameFromToken(String token) {
         return Jwts.parser().setSigningKey(SECRET)
                 .parseClaimsJws(token)
                 .getBody()

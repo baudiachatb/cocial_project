@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.Optional;
 
+import static com.b.myproject.common.MessageError.DANG_NHAP_THANH_CONG;
+
 
 @RestController
 @RequestMapping("v1/user")
@@ -19,16 +21,10 @@ import java.util.Optional;
 public class UserController {
     private final ServiceComposite composite;
 
-    @GetMapping("test1")
-    @PreAuthorize("hasAnyRole('ADMIN')")
-    public String test1() {
-        return "here is test1";
-    }
-
-    @GetMapping("test2")
-    @PreAuthorize("hasAnyRole('USER')")
-    public String test2() {
-        return "here is test2";
+    @GetMapping("login")
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+    public String login() {
+        return DANG_NHAP_THANH_CONG;
     }
 
     @GetMapping("/get")

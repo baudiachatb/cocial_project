@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.b.myproject.common.MessageError.LOI_XAC_THUC_USERNAME_PASSWORD;
+
 @NoArgsConstructor
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private JWTUltils jwtUltils = new JWTUltils();
@@ -34,7 +36,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userEntity.getUsername(), userEntity.getPassword()));
         } catch (Exception e) {
             e.fillInStackTrace();
-            throw new RuntimeException("Có lỗi xác thực userName, password");
+            throw new RuntimeException(LOI_XAC_THUC_USERNAME_PASSWORD);
         }
     }
     @Override

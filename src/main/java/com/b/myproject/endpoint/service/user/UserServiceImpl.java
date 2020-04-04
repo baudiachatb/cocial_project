@@ -28,7 +28,8 @@ public class UserServiceImpl implements IUserService {
      */
     @Override
     public UserEntity findUserByUserName(String userName) {
-        return userRepo.findOne(Specification.where(hasUserName(userName))).orElse(null);
+        return userRepo.findOne(Specification.where(hasUserName(userName)))
+                .orElse(userRepo.findOne(hasEmail(userName)).orElse(null));
     }
 
     /**
@@ -116,5 +117,9 @@ public class UserServiceImpl implements IUserService {
      */
     private Specification<UserEntity> hasUserId(String userId) {
         return (root, cq, cb) -> cb.equal(root.get(UserEntity_.id), userId);
+    }
+
+    private Specification<UserEntity> hasEmail(String email) {
+        return (root, cq, cb) -> cb.equal(root.get(UserEntity_.email), email);
     }
 }
